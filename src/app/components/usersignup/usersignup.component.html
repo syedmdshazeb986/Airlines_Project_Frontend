@@ -1,0 +1,117 @@
+<head></head>
+<section class="h-100 bg-dark">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card card-registration my-4">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                alt="Sample photo" class="img-fluid"
+                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <h3 class="mb-5 text-uppercase">USer registration form</h3>
+                    <form #myform="ngForm" id="form1" (ngSubmit)="onSubmit(myform)">
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label for="Title" class="form-label">Enter Title</label>
+                                <input #Title="ngModel" required minlength="4" maxlength="25" type="text" name="Title"  placeholder="enter Title" class="form-control form-control-lg" ngModel>   
+                                <div *ngIf="Title.invalid && (Title.dirty || Title.touched ||myform.submitted)">
+                                    <small *ngIf="Title.hasError('required')">
+                                        Enter a title
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label for="Firstname" class="form-label">Enter Firstname</label>
+                                <input #Firstname="ngModel" required minlength="4" maxlength="25" type="text" name="Firstname"  placeholder="enter Firstname" class="form-control form-control-lg" ngModel>
+                                <div *ngIf="Firstname.invalid && (Firstname.dirty || Firstname.touched ||myform.submitted)">
+                                    <small *ngIf="Firstname.hasError('required')">
+                                        Name is required.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                            <div class="form-outline">
+                                <label for="Lastname" class="form-label">Enter Lastname</label>
+                                <input #Lastname="ngModel" required minlength="4" maxlength="15" type="text" name="Lastname"  placeholder="enter Firstname" class="form-control form-control-lg" ngModel>
+                                <div *ngIf=" Lastname.invalid && (Lastname.dirty || Lastname.touched ||myform.submitted)">
+                                    <small *ngIf="Lastname.hasError('required')">
+                                        Last Name is required.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <label for="DateofBirth" class="form-label">Enter DateofBirth</label>
+                            <input #DateofBirth="ngModel" required minlength="4" maxlength="15" type="date" name="DateofBirth"  placeholder="enter DateofBirth" class="form-control form-control-lg" ngModel>
+                            <div *ngIf="DateofBirth.invalid && (DateofBirth.dirty || DateofBirth.touched ||myform.submitted)">
+                                <small *ngIf="DateofBirth.hasError('required')">
+                                    Date Of Birth is required
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                            <label for="Email" class="form-label">Enter Email</label>
+                            <input #Email="ngModel" required minlength="4" maxlength="25" type="text" name="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="enter Email" class="form-control form-control-lg" ngModel>
+                            <div *ngIf="Email.invalid && (Email.dirty || Email.touched ||myform.submitted)">
+                                <small>*ngIf="Email.hasError('required')">Email is a required field</small>
+                                <small *ngIf="Email.hasError('pattern')">This is not a valid Email</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label for="Password" class="form-label">Enter Password</label>
+                    <input #Password="ngModel" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}" minlength="8" maxlength="15" type="text" name="Password"  placeholder="enter Password" class="form-control form-control-lg" ngModel>
+                    <div *ngIf="Password.invalid && (Password.dirty || Password.touched ||myform.submitted)">
+                            <small *ngIf="Password.hasError('required')">Password is required</small>
+                            <small *ngIf="Password.hasError('minlength')">Password must be at least 8 charachters</small>
+                            <small *ngIf="Password.hasError('pattern')">Alphanumeric with at least 1 special & uppercase character</small>
+                    </div>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label for="Mobile" class="form-label">Enter Mobile</label>
+
+                    <input #Mobile="ngModel" required minlength="10" maxlength="10" type="text" name="Mobile"  placeholder="enter Mobile" class="form-control form-control-lg" ngModel>
+                    <div *ngIf=" Mobile.invalid && (Mobile.dirty || Mobile.touched||myform.submitted)">
+                        <div><small *ngIf="Mobile.hasError('pattern')">Enter a valid Phone number</small></div>
+                        <small *ngIf="Mobile.hasError('required')">Phone Number is a required field</small>
+                        <small *ngIf="Mobile.hasError('minlength')">Phone number must be of 10 digits</small>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end pt-3">        
+                    <button type="submit" class="btn btn-warning btn-lg ms-2">Submit</button>
+                </div>                
+               </form>
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+        
+
+
+
+
+
