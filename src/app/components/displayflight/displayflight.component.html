@@ -1,0 +1,23 @@
+<p>displayflight works!</p>
+<app-header *ngIf="!isLoggedIn"></app-header>
+<app-loggedinheader *ngIf="isLoggedIn == true"></app-loggedinheader>
+
+<div class="search-details">
+   <div class="heading">
+       <h2 class="heading--title">Search Results</h2>
+       <!-- <h4 class="heading--results">We found {{flights.length}} results</h4> -->
+   </div>
+</div>
+<div class="travel-details" *ngIf = "arrival!=null">
+    <div class="travel-details--wrapper">
+
+       <div class="heading__location" >
+           <span class="heading__location--place"> {{departure}}</span> <span class="heading__location--arrow">&#8594;</span>   <span class="heading__location--place">{{arrival}}</span>
+       </div>
+       
+    </div>
+</div>
+<h1 style="width: 100%;text-align:center;margin-top: 50px;">{{flights.length==0?"No Flights Found":""}}</h1>  
+<app-airplanecard [flightdetails] = "flights" [class_type]="class_type" [booking_type] = "booking_type" class="flightdetailwrapper">    
+
+</app-airplanecard>

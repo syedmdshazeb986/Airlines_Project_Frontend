@@ -13,23 +13,26 @@
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">
                   <h3 class="mb-5 text-uppercase">USer registration form</h3>
-                    <form #myform="ngForm" id="form1" (ngSubmit)="onSubmit(myform)">
-                    <div class="row">
+                    <form #myform="ngForm" id="form1" (ngSubmit)="myform.form.valid && onSubmit(myform)" >
+                        
+                    
+                        <label for="Title" class="form-label">Enter Title</label>
+                        <div class="row">
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
-                                <label for="Title" class="form-label">Enter Title</label>
-                                <input #Title="ngModel" required minlength="4" maxlength="25" type="text" name="Title"  placeholder="enter Title" class="form-control form-control-lg" ngModel>   
-                                <div *ngIf="Title.invalid && (Title.dirty || Title.touched ||myform.submitted)">
-                                    <small *ngIf="Title.hasError('required')">
-                                        Enter a title
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
+                                
+                        <select>
+                            <option value="1">Select <Title></Title></option>
+                            <option value="2">Mr.</option>
+                            <option value="3">Mrs.</option>
+                            <option value="4">Mis</option>
+                            <option value="5">Miss</option>
+                        </select></div>
+                    </div></div>
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                                 <label for="Firstname" class="form-label">Enter Firstname</label>
-                                <input #Firstname="ngModel" required minlength="4" maxlength="25" type="text" name="Firstname"  placeholder="enter Firstname" class="form-control form-control-lg" ngModel>
+                                <input #Firstname="ngModel" required minlength="4" maxlength="25" type="text" name="Firstname"  placeholder="Enter Firstname" class="form-control form-control-lg" ngModel>
                                 <div *ngIf="Firstname.invalid && (Firstname.dirty || Firstname.touched ||myform.submitted)">
                                     <small *ngIf="Firstname.hasError('required')">
                                         Name is required.
@@ -40,7 +43,7 @@
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                                 <label for="Lastname" class="form-label">Enter Lastname</label>
-                                <input #Lastname="ngModel" required minlength="4" maxlength="15" type="text" name="Lastname"  placeholder="enter Firstname" class="form-control form-control-lg" ngModel>
+                                <input #Lastname="ngModel" required minlength="4" maxlength="15" type="text" name="Lastname"  placeholder="Enter Lastname" class="form-control form-control-lg" ngModel>
                                 <div *ngIf=" Lastname.invalid && (Lastname.dirty || Lastname.touched ||myform.submitted)">
                                     <small *ngIf="Lastname.hasError('required')">
                                         Last Name is required.
@@ -48,13 +51,13 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                   
 
                 <div class="row">
                     <div class="col-md-6 mb-4">
                         <div class="form-outline">
                             <label for="DateofBirth" class="form-label">Enter DateofBirth</label>
-                            <input #DateofBirth="ngModel" required minlength="4" maxlength="15" type="date" name="DateofBirth"  placeholder="enter DateofBirth" class="form-control form-control-lg" ngModel>
+                            <input #DateofBirth="ngModel" required minlength="4" maxlength="15" type="date" name="DateofBirth"  placeholder="Enter DateofBirth" class="form-control form-control-lg" ngModel>
                             <div *ngIf="DateofBirth.invalid && (DateofBirth.dirty || DateofBirth.touched ||myform.submitted)">
                                 <small *ngIf="DateofBirth.hasError('required')">
                                     Date Of Birth is required
@@ -65,7 +68,7 @@
                     <div class="col-md-6 mb-4">
                         <div class="form-outline">
                             <label for="Email" class="form-label">Enter Email</label>
-                            <input #Email="ngModel" required minlength="4" maxlength="25" type="text" name="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="enter Email" class="form-control form-control-lg" ngModel>
+                            <input #Email="ngModel" required minlength="4" maxlength="25" type="text" name="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter Email" class="form-control form-control-lg" ngModel>
                             <div *ngIf="Email.invalid && (Email.dirty || Email.touched ||myform.submitted)">
                                 <small>*ngIf="Email.hasError('required')">Email is a required field</small>
                                 <small *ngIf="Email.hasError('pattern')">This is not a valid Email</small>
@@ -83,11 +86,15 @@
                             <small *ngIf="Password.hasError('pattern')">Alphanumeric with at least 1 special & uppercase character</small>
                     </div>
                 </div>
-
+                <div class="form-outline mb-4">
+                    <label for="confirmpassword" class="form-label">Confirm Password</label>
+                    <input maxlength="15" type="text" name="confirmpassword"  placeholder="Confirm Password" checkpwdvalidator = "Password" #cpass= "ngModel" class="form-control form-control-lg" ngModel>
+                    <span class="text-danger" >Password and Confirm Password does not match.</span>
+                </div>
                 <div class="form-outline mb-4">
                     <label for="Mobile" class="form-label">Enter Mobile</label>
 
-                    <input #Mobile="ngModel" required minlength="10" maxlength="10" type="text" name="Mobile"  placeholder="enter Mobile" class="form-control form-control-lg" ngModel>
+                    <input #Mobile="ngModel" required minlength="10" maxlength="10" type="text" name="Mobile"  placeholder="Enter Mobile" class="form-control form-control-lg" ngModel>
                     <div *ngIf=" Mobile.invalid && (Mobile.dirty || Mobile.touched||myform.submitted)">
                         <div><small *ngIf="Mobile.hasError('pattern')">Enter a valid Phone number</small></div>
                         <small *ngIf="Mobile.hasError('required')">Phone Number is a required field</small>
@@ -107,11 +114,3 @@
   </div>
 </div>
 </section>
-
-
-        
-
-
-
-
-

@@ -1,0 +1,84 @@
+<app-loggedinheader></app-loggedinheader>
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="menu">
+        <div class="Heading">
+            <h1>Booked Flight History</h1>
+        </div>
+        <div class = "cardwrapper" *ngFor ="let a of bookedtickets">
+                <div class="bookedflightcard" >
+                    <div class="title">
+                        <div class="titleheader name">
+                            <h3>LBJ</h3>
+                        </div>
+                        <div class="flightdetail titleheader">
+                            <small>flight</small>
+                            <strong>{{a.flightName}}</strong>
+                        </div>
+                    </div>
+                    <div class="Location">
+                        <div class="departurelocation city">
+                            <h3>{{a.source_City}}</h3>
+                        </div>
+                        <a class="airplane">
+                            <div class="fa fa-plane"></div>
+                        </a>
+                        <div class="Arrivallocation city">
+                            <h3>{{a.destination_City}}</h3>
+                        </div>
+                    </div>
+                    <div class="flightcardbody">
+                        <div class="timerow bodyrow">
+                            <div class="flightdetail locationcontainer">
+                                <small>Departure </small>
+                                <strong>{{a.departure_time|date:'dd MMM yy hh:mm a'}}</strong>
+                            </div>
+                            <div class="flightdetail locationcontainer">
+                                <small>Arrival </small>
+                                <strong>{{a.arrival_time|date:'dd MMM yy hh:mm a'}}</strong>
+                            </div>
+                            <div class="flightdetail locationcontainer">
+                                <small>Booking Type</small>
+                                <strong>₹ {{ a.booking_Type}}</strong>
+                            </div>
+                            <div class="flightdetail locationcontainer">
+                                <small>Booking Amount</small>
+                                <strong>₹ {{ a.booking_Amount}}</strong>
+                            </div>
+                        </div>
+                        <div class="locationrow bodyrow">
+                            <div class="flightdetail timecontainer">
+                                <small>Seats</small>
+                                <strong>{{a.no_of_Passengers}}</strong>
+                            </div>
+                            <div class="flightdetail timecontainer">
+                                <small>Class</small>
+                                <strong>{{a.class_Type}}</strong>
+                            </div>
+                            <div class="flightdetail timecontainer">
+                                <small></small>
+                                <strong></strong>
+                            </div>
+                        </div>
+
+                        <div class="submitrow bodyrow">
+                                <div class="flightdetail timecontainer">
+                                    <small>Ticket Status</small>
+                                    <strong>{{a.booking_Status=="confirmed" ? 'Confirmed' : 'Cancelled'}}</strong>
+                                </div>
+                                <div class="flightdetail timecontainer">
+                                    <small>Travel Date</small>
+                                    <strong>{{a.travel_date|date}}</strong>
+                                </div>
+                            <div class="flightdetail timecontainer" *ngIf="a.departure_time>a.cancellation_Time">
+                                <button class="cancelbtn" *ngIf="a.departure_time>a.cancellation_Time" (click)="oncancel(a.bookingId)">CANCEL</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>   
+        
+    
+</div>

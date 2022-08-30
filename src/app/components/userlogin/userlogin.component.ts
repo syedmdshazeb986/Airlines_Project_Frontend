@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {NgForm,FormsModule} from '@angular/forms';
 import { userlogin } from 'src/app/Models/userlogin';
 import { UserloginService } from 'src/app/services/userlogin.service';
+import { usersignup } from 'src/app/Models/usersignup';
 
 @Component({
   selector: 'app-userlogin',
@@ -16,6 +17,7 @@ export class UserloginComponent implements OnInit {
   logInUser:any;
   ngOnInit(): void {
   }
+  
   onSubmit(myform:NgForm) {
     this.data=myform.value;
     console.log(this.data)
@@ -23,10 +25,12 @@ export class UserloginComponent implements OnInit {
       {
         if (res) {
           alert("Login success");
-          this.logInUser=this.data;
-          console.log(res);
-          sessionStorage.setItem("username",this.logInUser.email);
-
+          this.logInUser=res;
+          console.log(this.logInUser);
+          sessionStorage.setItem("email",this.logInUser.email);
+          sessionStorage.setItem("userid",JSON.stringify(this.logInUser.userId));
+          console.log(sessionStorage.getItem("email"));
+          console.log(sessionStorage.getItem("userid"));
         }
 
       }, (err) => {
