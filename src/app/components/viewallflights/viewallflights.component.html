@@ -1,0 +1,55 @@
+<app-adminheader *ngIf="!isLoggedIn"></app-adminheader>
+ <app-adminloggedinheader *ngIf="isLoggedIn == true"></app-adminloggedinheader>
+
+<div class="bg">    
+    <div class="view">
+        <h1 class="h1" style="background-color: transparent;color:white;text-align:center;">
+            ALL FLIGHTS
+        </h1>
+        <table class="tbl">
+            <thead>
+                <br/>
+                <tr>
+                    <th class="h">
+                      
+                </th></tr>
+                <tr>
+                    <th colspan="7">
+                       <div class="searchplace">                          
+                            <input type="text" class="search" name="search" [(ngModel)]="searchText" placeholder="&#xf002; Search for Flights">
+                        </div> 
+                    </th>
+                </tr>
+                <tr class="th">
+                    <th class="th">Flight Number</th>
+                    <th class="th">Origin</th>
+                    <th class="th">Departure Time</th>
+                    <th class="th">Destination</th>
+                    <th class="th">Arrival Time</th> 
+                    <th class="th"></th>                         
+                
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr class="tr" *ngFor="let flight of flights ">
+                    <td class="td">
+                        <div>
+                            <img src="../../../assets/adminplanelogo.png" class="head_logo">
+                        </div>
+                        {{flight.flightName}}
+                    </td>
+                    <td class="td">{{flight.source}}</td>
+                    <td class="td">{{flight.departure_Time | date:'dd MMM yyyy hh:mm a'}}</td>
+                    <td class="td">{{flight.destination}}</td>
+                    <td class="td">{{flight.arrival_Time| date:'dd MMM yyyy hh:mm a'}}</td>
+                    <td class="td">
+                        <!-- <button class="bt update" [routerLink]="['/updateflight/', flight.flight_name]">Update</button><br> -->
+                        <button class="bt delete" type="submit" (click)="delete(flight.flightName)">Remove</button>
+                    </td>
+              
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>

@@ -14,6 +14,7 @@ export class TransactionService {
     'responseType':'text' as 'json'
   }
         private apiServer = "https://localhost:44378/api/User/booking"
+        private GetbookingsIdapi="https://localhost:44378/api/User/getbookingId"
         public passengers:any
         public seatArray = []
         public current_date : string
@@ -33,6 +34,10 @@ export class TransactionService {
   this.seat_type = this.SelectedFlightService.travel_status ? "business":"economy"}
   
   
+getbookingIdbyUserId(user_id:any){
+  return this.httpClient.get(this.GetbookingsIdapi,user_id);
+}
+
   book(user_id:any,flight_id:any,booking_type:any,return_date:any,class_type:any,travel_date:any,payment_mode:any,passengers:Passenger[])
   {
 
@@ -44,7 +49,7 @@ export class TransactionService {
           "Class_Type":class_type,
           "Travel_date" : travel_date,
           "Payment_mode":payment_mode,
-          "Passengers":passengers        
+          "Passengers":passengers     
       }
      console.log(this.body)
       return this.httpClient.post(this.apiServer,this.body,this.httpOptions);

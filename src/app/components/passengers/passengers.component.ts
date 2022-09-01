@@ -26,7 +26,7 @@ export class PassengersComponent implements OnInit {
     public dataarray:Passenger[] = []
     public booking_type:any;
     public class_type:any;
-    public i:number=26;
+    public i:number=3;
     public seats:any;
     public leftseats:Seat[];
    
@@ -58,8 +58,7 @@ export class PassengersComponent implements OnInit {
           console.log(this.booking_type)
           this.class_type=this.route.snapshot.paramMap.get('class_type');
           console.log(this.class_type)
-          this.passenger.Gender="Male";
-          this.passenger.SeatId=this.i++;
+
           this.dataarray.push(this.passenger)
           
           this.count =1;
@@ -67,7 +66,7 @@ export class PassengersComponent implements OnInit {
           this.seatprice=this.class_type=="economic"?this.data.economic_fare:this.data.business_fare;
           console.log(this.seatprice)
           this.totalprice=this.seatprice+708;
-
+          this.sharedservice.setAmount(this.seatprice)
           
       }
         
@@ -87,7 +86,6 @@ check(count:any):any{
           {
             this.passenger = new Passenger()
             this.passenger.Gender='Male';
-            this.passenger.SeatId=23;
             console.log(this.passenger)
             this.dataarray.push(this.passenger)
             this.count++;
@@ -119,7 +117,7 @@ check(count:any):any{
           // let response = await this.fetchseats.fetchseats(this.flightselected.flight_number)
             this.sharedservice.setPassenger(this.dataarray)
             console.log(this.data)
-            this.router.navigate([`${'flight/payment'}`,{data:JSON.stringify(this.data),booking_type:this.booking_type,class_type:this.class_type,passengers:JSON.stringify(this.dataarray),totalprice:this.totalprice+708}]);
+            this.router.navigate([`${'flight/seats'}`,{data:JSON.stringify(this.data),booking_type:this.booking_type,class_type:this.class_type,passengers:JSON.stringify(this.dataarray),totalprice:this.totalprice+708}]);
             //this.TransactionService.passengers = this.dataarray
             this.TransactionService.final_amount = this.totalprice
           
@@ -148,4 +146,3 @@ check(count:any):any{
         //   this.totalprice = this.seatprice+698+10
         // } 
   }
-  

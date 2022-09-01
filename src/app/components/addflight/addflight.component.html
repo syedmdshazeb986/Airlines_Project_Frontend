@@ -1,0 +1,71 @@
+<div class="bg">
+<div class="container-fluid px-1 py-5 mx-auto">
+    <div class="row d-flex justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+            <h3>AIRLINE RESERVATION SYSTEM</h3>
+            <p class="blue-text">Add flights</p>
+            <div class="card">
+                <h5 class="text-center mb-4">Powering world-class companies</h5>
+                
+                <form class="form-card" #myform="ngForm"(ngSubmit)="onSubmit(myform.value)">
+  
+                  <div class="row justify-content-between text-left">
+                    <div class="form-group col-12 flex-column d-flex"> 
+                      <label class="form-control-label px-3">Flight name:<span class="text-danger"> *</span></label> 
+                      <input type="text" name="flightName" placeholder="Enter flight name" ngModel required> 
+                    </div>
+                  </div>
+  
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Departure airport<span class="text-danger"> *</span></label> 
+                          <select type="type" name="depart_airport_id" (change)="changeairport($event)" class="form-control" ngModel>
+                            <option>--Select--</option>
+                            <option [value]="airport.airportId" *ngFor="let airport of airports">
+                              {{airport.city}}
+                            </option>
+                          </select>
+                          
+                        </div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Arrival Airport<span class="text-danger"> *</span></label> 
+                          <select type="type" name="arrival_airport_id" (change)="changeairport($event)" class="form-control" ngModel>
+                            <option>--Select--</option>
+                            <option [value]="airport.airportId" *ngFor="let airport of airports">
+                              {{airport.city}}
+                            </option>
+                          </select> 
+                        </div>
+                    </div>
+  
+                    <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                          <label class="form-control-label px-3">Departure time<span class="text-danger"> *</span></label> 
+                          <input type="datetime-local" name="departure_time" placeholder="Enter departure time" ngModel> </div>
+                        
+                        <div class="form-group col-sm-6 flex-column d-flex"> 
+                          <label class="form-control-label px-3">Arrival Time<span class="text-danger"> *</span></label> 
+                          <input type="datetime-local" id="arrival_time" name="arrival_time" placeholder="Enter arrival time" ngModel> 
+                        </div>
+                    </div>
+  
+                    <div class="row justify-content-between text-left">
+                      <div class="form-group col-sm-6 flex-column d-flex"> 
+                        <label class="form-control-label px-3">Economy Fare<span class="text-danger"> *</span></label> 
+                        <input type="number" id="economy_fare" name="economy_fare" placeholder="Enter economy fare" ngModel> </div>
+                      
+                      <div class="form-group col-sm-6 flex-column d-flex"> 
+                        <label class="form-control-label px-3">Business fare<span class="text-danger"> *</span></label> 
+                        <input type="number" id="business_fare" name="business_fare" placeholder="Enter business fare" ngModel> 
+                      </div>
+                  </div>
+  
+                    
+                    <div class="row justify-content-end">
+                        <div class="form-group col-sm-6"> 
+                          <button type="submit" (click)="make()" class="btn btn-danger">Submit</button> </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

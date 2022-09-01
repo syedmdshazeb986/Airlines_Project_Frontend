@@ -1,110 +1,44 @@
-<app-loggedinheader></app-loggedinheader>
-<header>
-    <div class="logo">
-        <a>Traveller Details </a>   
-     </div>
+<div class="planewrapper">
+
+<div class="plane">
+    <div class="cockpit">
+      <h1>Please select a seat</h1>
+    </div>
+    <div class="exit exit--front fuselage">
+      
+    </div>
+<div >
+    <div id="container">
     
- </header> 
-<div class="parent">
-    <div class="airplane-seatswrapper">   
-        <div class="cockpit"> 
-            <div class="cockpit-img flight-image" ></div>
-        </div>
-        <div class="seatwrapper">
-            <div class="airplane-left">
-                <!-- <div class="row-wrapper">
-                    <div *ngFor="let s of row1,let i = index;">
-                        <button  [disabled] = "s.booked == 1 || s.class != seatclass"
-                        [ngClass]="(s.booked==1)?'seat disabled' : ( s.class != seatclass) ? 'seat notallowed' :
-                        (s.reserved == 1) ? 'seat reserved choosen' : 'seat choosen'"
-                        (click) = "reserve(s.seatnumber)" >{{s.seatnumber}} </button>
-                    </div>
-                </div> -->
-                
-                <div class="row-wrapper">
-                    <div *ngFor="let s of row2;">
-                        <button  [disabled] = "s.is_booked == 1 || s.seat_type != class_type"
-                        [ngClass]="(s.is_booked==1)?'seat disabled' : ( s.seat_type != class_type) ? 'seat notallowed' :
-                        (s.reserved == 1) ? 'seat reserved choosen' : 'seat choosen'"
-                        (click) = "reserve(s.seat_id)" >{{s.seat_name}} </button>
-                    </div>
-                </div>
-                
-                <div class="row-wrapper">
-                    <div *ngFor="let s of row3;">
-                        <button  [disabled] = "s.is_booked == 1 || s.seat_type != class_type"
-                        [ngClass]="(s.is_booked==1)?'seat disabled' : ( s.seat_type != class_type) ? 'seat notallowed' :
-                        (s.reserved == 1) ? 'seat reserved choosen' : 'seat choosen'"
-                        (click) = "reserve(s.seat_id)" >{{s.seat_name}} </button>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <div class="airplane-right">
-                    <div class="row-wrapper">
-                        <div *ngFor="let s of row4;">
-                            <button  [disabled] = "s.is_booked == 1 || s.seat_type != class_type"
-                            [ngClass]="(s.is_booked==1)?'seat disabled' : ( s.seat_type != class_type) ? 'seat notallowed' :
-                            (s.reserved == 1) ? 'seat reserved choosen' : 'seat choosen'"
-                            (click) = "reserve(s.seat_id)" >{{s.seat_name}} </button>
-                        </div>
-                    </div>
-                    
-                    <div class="row-wrapper">
-                        <div *ngFor="let s of row5;">
-                            <button  [disabled] = "s.is_booked == 1 || s.seat_type != class_type"
-                            [ngClass]="(s.is_booked==1)?'seat disabled' : ( s.seat_type != class_type) ? 'seat notallowed' :
-                            (s.reserved == 1) ? 'seat reserved choosen' : 'seat choosen'"
-                            (click) = "reserve(s.seat_id)" >{{s.seat_name}} </button>
-                        </div>
-                    </div>
-                    
-                    <div class="row-wrapper">
-                        <div *ngFor="let s of row6;">
-                            <button  [disabled] = "s.is_booked == 1 || s.seat_type != class_type"
-                            [ngClass]="(s.is_booked==1)?'seat disabled' : ( s.seat_type != class_type) ? 'seat notallowed' :
-                            (s.reserved == 1) ? 'seat reserved choosen' : 'seat choosen'"
-                            (click) = "reserve(s.seat_id)" >{{s.seat_name}} </button>
-                        </div>
-                    </div>
-              </div>
-        </div>
-        <div class="tail"> 
-            <div class="tail-img flight-image" ></div>
-        </div>
-
-    </div>
-</div> 
-<footer>
-    <div class="footer--left">
-        <span class="footer--title">Select Seat</span>
+    <ul id="leftContainer">
+    <li *ngFor="let item of seatsArray" (click)="checkAvailable(item)"><div [ngClass]="{active: check(item)}" [ngStyle]="{'background-color':disable(item)?'red':'#45abc7'}" [ngClass]="{disabled: disable(item)}" class="leftbox">{{item}}</div></li>
     
-        <div class="seatlegends">
-            <div class="legendwrapper">
-                <div class="seatblock"></div>
-                <span>Booked</span>
-            </div>
-            <div class="legendwrapper">
-                <div class="seatblock" style="background-color: green;"></div>
-                <span>Selected</span>
-            </div>
-            <div class="legendwrapper">
-                <div class="seatblock" style="background-color: white;"></div>
-                <span>{{class_type == "business" ? "economy" : seatclass == "economy" ? "business" : undefined }}</span>
-            </div>
-            <div class="legendwrapper">
-                <div class="seatblock choosen" ></div>
-                <span>{{class_type}}</span>
-            </div>
-            
-        </div>    
-
+   </ul>
+    
+    
     </div>
-
-    <div class="footer--right">
-        <button class="confirmseat" (click) = "onSubmit()">Confirm Seats</button>
-    </div>
-</footer>
-
-
+   
+   </div>
+   <div class="m-5">
+   
+       <table>
+        <tr>
+        <th>Seat&nbsp;&nbsp;&nbsp;&nbsp;</th>
+ 
+   
+   
+    <th>Class</th>
+    </tr>
+    <tr *ngFor="let item of selectedArray">
+    <td>{{item}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+ 
+    <td>{{class_type}}</td>
+    </tr>
+    
+    </table>
+   </div>
+   <div style="text-align:center;"><button class="btn btn-success cursor-pointer mb-5" (click)="submitSeats()">Confirm</button></div>
+   
+       
+  </div>
+</div>

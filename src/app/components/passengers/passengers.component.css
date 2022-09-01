@@ -27,6 +27,14 @@ header
 /***************************************************/
 .passengercontainer
 {
+        display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+
+    background-image: url("../../../assets/passengers.jpg");
+    background-size: cover;
     background-color:  #fdfdfd;
     min-height: 100vh;
     padding: 2rem;

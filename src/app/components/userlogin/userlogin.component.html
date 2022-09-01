@@ -1,18 +1,38 @@
-<p>userlogin works!</p> 
-<form  #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)">
-    <label for="Email" class="form-label">Enter Email</label>
-    <input #Email="ngModel" required minlength="4" maxlength="35" type="text" name="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="enter Email" class="form-control form-control-lg" ngModel>
-    <div *ngIf="Email.invalid && (Email.dirty || Email.touched ||f.submitted)">
-        <small *ngIf="Email.hasError('required')">Email is a required field ></small>
-        <small *ngIf="Email.hasError('pattern')">This is not a valid Email</small>
-    </div>
-    <label for="Password" class="form-label">Enter Password</label>
-    <input #Password="ngModel" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}" minlength="8" maxlength="15" type="text" name="Password"  placeholder="enter Password" class="form-control form-control-lg" ngModel>
-    <div *ngIf="Password.invalid && (Password.dirty || Password.touched ||f.submitted)">
-            <small *ngIf="Password.hasError('required')">Password is required</small>
-            <small *ngIf="Password.hasError('minlength')">Password must be at least 8 charachters</small>
-            <small *ngIf="Password.hasError('pattern')">Alphanumeric with at least 1 special & uppercase character</small>
-    </div>
-    <button type="submit" class="btn btn-warning btn-lg ms-2">Submit</button>
+<div class="loginwrapper">
+    <!-- <div class="logo" [routerLink]="['/']">
+        <img src="../../../assets/logo1.png">
+    </div> -->
+    <div class="logincontainer">
+        <h1 class='loginform__heading'>Login</h1>
+        <form class="loginform" #f="ngForm" novalidate (ngSubmit)="f.form.valid && onSubmit(f)" >
+            
+            <div class="inputcontainer">
+                <label class="label">Email</label>
+                <input type='email' class='loginform__input' name="Email" autoComplete="off" required ngModel
+                    #Email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                <div *ngIf="Email.invalid && (Email.dirty || Email.touched ||f.submitted)">
+                    <small>
+                        <mat-error *ngIf="Email.errors?.['required']">Email is a required field</mat-error>
+                    </small>
+                    <small *ngIf="Email.errors?.['pattern']">This is not a valid Email</small>
+                </div>
+            </div>
 
-</form>
+            <div class='pwdcontainer inputcontainer'>
+                <label class="label">Password</label>
+                <input id='password' class='loginform__input' name="Password"
+                    ngModel #Password="ngModel" minLength="8" autoComplete="off" required />
+    
+
+                <div *ngIf="Password.invalid && (Password.dirty || Password.touched ||f.submitted)">
+                    <small *ngIf="Password.errors?.['required']">Password is required</small>
+                    <small *ngIf="Password.errors?.['minlength']">Password must be at least 8 charachters</small>
+                </div>
+            </div>
+            <button type="submit" class="submitbtn"> Login </button>
+            <a class="loginsignupbtn" [routerLink]="['/usersignup']">Create Account<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+
+        </form>
+
+    </div>
+</div>

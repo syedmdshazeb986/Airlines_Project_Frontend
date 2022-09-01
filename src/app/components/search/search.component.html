@@ -1,132 +1,139 @@
-<div class="header row">
+
+<div class="bg">
   <nav class="navbar" *ngIf = "loggedIn == false">
-        <div class="logo">
-          <img src="../../../assets/logo.png" div [routerLink]="['/']" class="searchlogoImg" />   
-        </div>
-      <div class="nav-items">
-        
-            <a [routerLink]="['flight/rules']" style="cursor: pointer">Booking Rules</a>
-            
-            <a [routerLink]="['login']" style="cursor: pointer">Login</a>
-            <a [routerLink]="['signup']" style="cursor: pointer">Signup</a>
-            
-      </div>
-
-  </nav>
-  <nav class="navbar" *ngIf = "loggedIn == true">
     <div class="logo">
-      <div [routerLink]="['/']" class="searchlogoImg" ></div>   
+      <a [routerLink]="['/']"><img style="width: 9rem; height: 5rem;" src="../../../assets/logo3.png"></a>   
     </div>
-    <div class="nav-items">
-        <a [routerLink]="['/flight/rules']" style="cursor: pointer;">Booking Rules</a>
-        <a (click) = "handlelogout()" style="cursor: pointer;">Logout</a>
-        <a [routerLink]="['/flightdata']" class="avatar"><fa-icon [icon]="faUser"></fa-icon></a> 
-      </div>
-  </nav>
-
-  
-    <div style="margin-left: 5vw;margin-right: 5vw;">
-      <div class="herotext">
-        <h2 class="hero--subtext">A Great way to Fly</h2>
-        <h1 class="hero--maintext">Where are you going?</h1>
-      </div>
-      <div class="row card">
-        <form class="form col-12" #flightsearchform = "ngForm" (ngSubmit) = "onSubmit()" novalidate>              
-                <div class="form__details" style="width: 100%;display:flex;justify-content:space-between">
-                    <div class="row">
-                        <div class="form__radio">
-                            <input type="radio" value="one_way" name="Booking_Type" [(ngModel)] = "model.Booking_Type"/>
-                            <label for="one-way"> One Way</label>
-                        </div>
-                        <div class="form__radio">
-                            <input type="radio" value="return" name="Booking_Type" [(ngModel)] = "model.Booking_Type"/>
-                            <label for="return"> Round Trip</label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="form__radio">
-                          <input type="radio" value="business" name="Class_Type" [(ngModel)] = "model.Class_Type"/>
-                          <label for="business"> Business</label>
-                      </div>
-                      <div class="form__radio">
-                          <input type="radio" value="economic" name="Class_Type" [(ngModel)] = "model.Class_Type"/>
-                          <label for="economic"> Economy</label>
-                      </div>
-                  </div>
-                </div>
-                <div class="form__details row">
-                  <div style="font-size: 1.5rem" class="form__inputcontainer" >
-                    <mat-form-field appearance="outline" [hideRequiredMarker]= "true">
-                      <mat-label>From</mat-label>
-                      <mat-select name="Depart_airport_Id" [(ngModel)] = "model.Depart_airport_Id" required>
-                        <mat-option *ngFor="let airport of airports" [value]="airport.airportId">
-                          {{airport.city}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
-                  </div>
-                  <div style="font-size: 1.5rem" class="form__inputcontainer">
-                      <mat-form-field appearance="outline" [hideRequiredMarker]= "true">
-                        <mat-label>To</mat-label>
-                        <mat-select name="Arrival_airport_Id" [(ngModel)] = "model.Arrival_airport_Id" required>
-                          <mat-option *ngFor="let airport of airports" [value]="airport.airportId">
-                            {{airport.city}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                  </div>
-                  
-                  - <div style="font-size: 1.5rem" style="display:flex;position:relative;flex-direction: column;" class="form__inputcontainer">
-                       <mat-label style="font-size: 12px;position:absolute;margin-left: 10px;">Departure</mat-label>
-                        <input type="date" style="width: 200px;height:50px;margin-top: 9px;padding: 10px;border-radius: 5px;border-width: 1px;border-color: lightgray" [(ngModel)] = "model.Departure_Time" name="Departure_Time" required />
-                       
-                   </div> 
-                    <div style="font-size: 1.5rem" class="form__inputcontainer">
-                      <mat-form-field appearance="outline" [hideRequiredMarker]= "true">
-                        <mat-label>Adults</mat-label>
-                        <mat-select name="adults"  [(ngModel)] = "model.adults" required>
-                          <mat-option *ngFor="let count of travellers" [value]="count" >
-                            {{count}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-
-                    <div style="font-size: 1.5rem" class="form__inputcontainer">
-                      <mat-form-field appearance="outline" [hideRequiredMarker]= "true">
-                        <mat-label>Childs</mat-label>
-                        <mat-select name="childs"  [(ngModel)] = "model.childs" required>
-                          <mat-option *ngFor="let count of travellers" [value]="count" >
-                            {{count}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-
-                    <div style="font-size: 1.5rem" class="form__inputcontainer">
-                      <mat-form-field appearance="outline" [hideRequiredMarker]= "true">
-                        <mat-label>Infants</mat-label>
-                        <mat-select name="infants"  [(ngModel)] = model.infants required>
-                          <mat-option *ngFor="let count of travellers" [value]="count" >
-                            {{count}}
-                          </mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    </div>
-  
-                </div>
-                <div class="row justify-content-center">
-                  <button [disabled] = "flightsearchform.form.invalid" type="submit" 
-                  [ngClass]="(flightsearchform.form.invalid == false? 'btn-enabled' : 'btn-disabled')"
-                  >SEARCH</button>
-                </div>
-        </form>
-        </div>
-    </div>
+  <div class="nav-items">
     
-    
+        <a [routerLink]="['flight/rules']" style="cursor: pointer">Booking Rules</a>
+        
+        <a [routerLink]="['/userlogin']" style="cursor: pointer">Login</a>
+        <a [routerLink]="['/usersignup']" style="cursor: pointer">Signup</a>
+        
   </div>
-<footer class="admin--login"> 
-      <a [routerLink]="['/adminlogin']">Go to admin</a>
-</footer>
+
+</nav>
+<nav class="navbar" *ngIf = "loggedIn == true">
+
+<div class="nav-items">
+    <a [routerLink]="['/flight/rules']" style="cursor: pointer;">Booking Rules</a>
+    <a (click) = "handlelogout()" style="cursor: pointer;">Logout</a>
+    <a [routerLink]="['/flightdata']" class="avatar"><fa-icon [icon]="faUser"></fa-icon></a> 
+  </div>
+</nav>
+
+  <div class="container-fluid px-1 py-5 mx-auto">
+      <div class="row d-flex justify-content-center">
+          <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+              <h3>Traveling the globe, making dreams come true</h3>
+              <p class="blue-text">A Great way to Fly</p>
+              <div class="card">
+                  <h5 class="text-center mb-4">Fly Your Dreams</h5>
+                  
+                  <form class="form-card" #myform="ngForm"(ngSubmit)="onSubmit()">
+    
+                    <div class="row justify-content-between text-left">
+                      <div class="form-group col-12 flex-column d-flex"> 
+                        <div class="form__details" style="width: 100%;display:flex;justify-content:space-between">
+                          <div class="row">
+                              <div class="form__radio">
+                                  <input type="radio" value="one_way" name="Booking_Type" [(ngModel)] = "model.Booking_Type"/>
+                                  <label for="one-way"> One Way</label>
+                              </div>
+                              <div class="form__radio">
+                                  <input type="radio" value="return" name="Booking_Type" [(ngModel)] = "model.Booking_Type"/>
+                                  <label for="return"> Round Trip</label>
+                              </div>
+                          </div>
+      
+                          <div class="row">
+                            <div class="form__radio">
+                                <input type="radio" value="business" name="Class_Type" [(ngModel)] = "model.Class_Type"/>
+                                <label for="business"> Business</label>
+                            </div>
+                            <div class="form__radio">
+                                <input type="radio" value="economic" name="Class_Type" [(ngModel)] = "model.Class_Type"/>
+                                <label for="economic"> Economy</label>
+                            </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+    
+    
+    
+
+                      <div class="row justify-content-between text-left">
+                        <div style="font-size: 1.5rem" class="form__inputcontainer" >
+                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">From<span class="text-danger"> *</span></label> 
+                            <select type="type" name="Depart_airport_Id" [(ngModel)] = "model.Depart_airport_Id" required>
+                              <option>--Select--</option>
+                              <option [value]="airport.airportId" *ngFor="let airport of airports">
+                                {{airport.city}}
+                              </option>
+                            </select>
+                        </div>
+                        </div>
+                        <div style="font-size: 1.5rem" class="form__inputcontainer">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">To<span class="text-danger"> *</span></label> 
+                              <select type="type" name="Arrival_airport_Id" [(ngModel)] = "model.Arrival_airport_Id" required>
+                                <option>--Select--</option>
+                                <option [value]="airport.airportId" *ngFor="let airport of airports">
+                                  {{airport.city}}
+                                </option>
+                              </select>
+                          </div>
+                        </div>
+                      </div>
+    
+                      <div style="font-size: 1.5rem" class="form__inputcontainer">
+                      
+                  <div class="row justify-content-between text-left">
+                    <div class="form-group col-sm-6 flex-column d-flex"> 
+                      <label class="form-control-label px-3">Departure time<span class="text-danger"> *</span></label> 
+                      <input type="date"  [(ngModel)] = "model.Departure_Time" name="Departure_Time" placeholder="Enter departure time" ngModel> </div>
+                    </div>
+                    </div>
+                        
+                      <div class="row justify-content-between text-left">
+                      </div> 
+                      <div style="font-size: 1.5rem" class="form__inputcontainer">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Adults<span class="text-danger"> *</span></label> 
+                          <input #adults="ngModel"   type="number" name="adults"  placeholder="Enter Number of Adults" class="form-control form-control-lg" [(ngModel)] = "model.adults" ngModel>
+                      </div>
+                        
+                      </div>
+  
+                      <div style="font-size: 1.5rem" class="form__inputcontainer">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Childrens<span class="text-danger"> *</span></label> 
+                            <input #adults="ngModel"   type="number" name="childs"  placeholder="Enter Number of Childs" class="form-control form-control-lg" [(ngModel)] = "model.childs" ngModel>
+                        </div>
+                          
+                      </div>
+                  
+                      <div style="font-size: 1.5rem" class="form__inputcontainer">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Infants<span class="text-danger"> *</span></label> 
+                          <input #adults="ngModel"   type="number" name="infants"  placeholder="Enter Number of Tnfants" class="form-control form-control-lg" [(ngModel)] = "model.infants" ngModel>
+                      </div>
+                    </div>
+                
+         
+    
+                      
+                      <div class="row justify-content-end">
+                          <div class="form-group col-sm-6"> 
+                            <button [disabled] = "myform.form.invalid" type="submit" 
+                            [ngClass]="(myform.form.invalid == false? 'btn-enabled' : 'btn-disabled')"
+                            >SEARCH</button>
+                      </div>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+    </div>
+    <footer class="admin--login"> 
+      <a routerLink="adminlogin">Admin Login</a>
+    </footer>
+  </div>

@@ -34,8 +34,18 @@ header
     padding: 2rem;
 
 }
+.container{
+  background-color:  #c5e9f6;
+}
+
 .paymentwrapper
 {
+  background-image: url("../../../assets/payments.jpg");
+  background-size: cover;
+  background-color:  #9be2fc;
+  min-height: 100vh;
+  padding: 2rem;
+
     display: flex;
     justify-content: flex-start;
     align-items: center;

@@ -12,6 +12,9 @@ import { UsersignupComponent } from './components/usersignup/usersignup.componen
 import { SeatuiComponent } from './components/seatui/seatui.component';
 import { PaymentuiComponent } from './components/paymentui/paymentui.component';
 import { EticketComponent } from './components/eticket/eticket.component';
+import { ChangepasswordComponent } from './components/changepassword/changepassword.component';
+import { ViewallflightsComponent } from './components/viewallflights/viewallflights.component';
+import { AddflightComponent } from './components/addflight/addflight.component';
 
 
 const routes: Routes = [
@@ -21,12 +24,15 @@ const routes: Routes = [
   {path:'cancelleddata',component:CancellationsComponent},
   {path:'adminlogin',component:AdminloginComponent},
   {path:'flight/rules',component:RulesComponent},
-  {path:'search',component:SearchComponent},
+  {path:'',component:SearchComponent},
   {path:'flight/search',component:DisplayflightComponent},
   {path:'flight/passengers',component:PassengersComponent},
   {path:'flight/seats',component:SeatuiComponent},
   {path:'flight/payment',component:PaymentuiComponent},
-  {path:'flight/payment/eticket',component:EticketComponent}
+  {path:'eticket',component:EticketComponent},
+  {path:'changepassword',component:ChangepasswordComponent},
+  {path:'addflight',component:AddflightComponent},
+  {path:'viewallflights',component:ViewallflightsComponent}
   
 ];
 

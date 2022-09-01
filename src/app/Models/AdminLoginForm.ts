@@ -1,4 +1,4 @@
-export class AdminLoginFormat
+export class AdminLoginForm
 {
     public Email:String;
     public Password:String;

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SearchflightService } from 'src/app/services/searchflight.service';
 import { SelectedflightService } from 'src/app/services/selectedflight.service';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { SharedserviceService } from 'src/app/sharedservice.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -22,12 +23,14 @@ export class EticketComponent implements OnInit {
 
   flight_number: number;
   travel_date: any;
-  transaction_id:number;
-  booking_date:number;
+  transaction_id:any;
+  booking_date:any;
   arrival_time:number;
   departure_time:Number;
+  flightdetails:any;
+  userid:number;
 
-  constructor(private eticket:TransactionService, private searchservice:SearchflightService,public flightselected:SelectedflightService,private router:Router) { }
+  constructor(private sharedservice:SharedserviceService,private eticket:TransactionService, private searchservice:SearchflightService,public flightselected:SelectedflightService,private router:Router) { }
 
   ngOnInit(): void {
     if(!sessionStorage.getItem("userid"))
@@ -40,23 +43,21 @@ export class EticketComponent implements OnInit {
       })
       this.router.navigate([`${'userlogin'}`]);
     }
-    for(let i=0; i<this.searchservice.flightdata.length;i++)
-    {
-    //  if(this.searchservice.flightdata[i].flight_number==this.flightselected.flight_number)
-     // {
-       // this.departure_time=this.searchservice.flightdata[i].departure_time
-        //this.arrival_time=this.searchservice.flightdata[i].arrival_time
-     // }
-    }
-    this.flight_number= this.flightselected.flight_number
-    this.departure = this.searchservice.source_airport_id
-    this.travel_date=this.eticket.booked_information.travel_date.substring(0,10)
-    this.arrival = this.searchservice.destination_airport_id  
-    this.passengers=this.eticket.booked_information.passengers
-    this.amount=this.eticket.booked_information.amount
-    this.transaction_id=this.eticket.booked_information.transaction_id
-    this.booking_date=this.eticket.booked_information.booking_date.substring(0,10)
-   
-
+ 
+   this.passengers=this.sharedservice.getPassengers()
+   this.flightdetails=this.sharedservice.getAeroplaneCardData()
+   this.userid=this.sharedservice.getuserid()
+   this.eticket.getbookingIdbyUserId(this.userid).subscribe(data =>{
+    this.transaction_id=data;
+   })
+   this.booking_date=new Date();
+console.log(this.passengers)
+console.log(this.flightdetails)
+this.flight_number=this.flightdetails.flightId;
+this.departure=this.flightdetails.source_city;
+this.arrival=this.flightdetails.destination_city;
+this.departure_time=this.flightdetails.departure_Time;
+this.arrival_time=this.flightdetails.arrival_Time;
+this.amount=this.sharedservice.getAmount()
   }
 }

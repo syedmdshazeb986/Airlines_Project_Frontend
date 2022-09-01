@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import { AdminLoginFormat } from 'src/app/Models/AdminLoginFormat';
+import { AdminLoginForm } from 'src/app/Models/AdminLoginForm';
 import { AdminloginService } from 'src/app/services/adminlogin.service';
 
 @Component({
@@ -12,7 +12,6 @@ import { AdminloginService } from 'src/app/services/adminlogin.service';
 })
 export class AdminloginComponent implements OnInit {
   verify=true;
-  data:AdminLoginFormat
   yes: any;
   public adminlogin: { email: string; password: string; };;
   public response: String
@@ -36,28 +35,29 @@ export class AdminloginComponent implements OnInit {
   {
     this.visible = !this.visible;
   }
-  submitForm(myform:NgForm)
+  submitForm(AdminLoginForm: { value: { email: string; }; })
   {
-    this.data=myform.value;
-    console.log(this.data)
+   
     this.timer = true
-    this.loginservice.login(myform.value).subscribe((res)=>{
+    this.loginservice.login(AdminLoginForm.value).subscribe((d:any)=>{
 
-      if (res) {
-        alert("Login success");
-        console.log(res);
-        //sessionStorage.setItem("email",this.res.email);
-        //sessionStorage.setItem("userid",JSON.stringify(this.logInUser.userId));
-        //console.log(sessionStorage.getItem("email"));
-        //console.log(sessionStorage.getItem("userid"));
+      console.log(d);
+      if(d == "Login Successful")
+      {
+        this.router.navigate([`${'/viewallflights'}`]);
+
+        sessionStorage.setItem('admin',AdminLoginForm.value.email)
+        console.log(sessionStorage.setItem('admin',AdminLoginForm.value.email))
       }
-
-    }, (err) => {
-      alert("There was a problem logging you out");
-    });
+    },(err: { error: String; })=>{
+      this.verify=false;
+      this.response = err.error;
+      console.log(this.verify);
+    })
 
     setTimeout(() => {
       this.timer = false
     },3000)
   }
+
 }

@@ -12,7 +12,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { AppComponent } from './app.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { UsersignupComponent } from './components/usersignup/usersignup.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserloginComponent } from './components/userlogin/userlogin.component';
 import { FlightdataComponent } from './components/dashboard/flightdata/flightdata.component';
@@ -31,6 +31,11 @@ import { AirplanecardComponent } from './components/airplanecard/airplanecard.co
 import { SeatuiComponent } from './components/seatui/seatui.component';
 import { PaymentuiComponent } from './components/paymentui/paymentui.component';
 import { EticketComponent } from './components/eticket/eticket.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { ChangepasswordComponent } from './components/changepassword/changepassword.component';
+import { AddflightComponent } from './components/addflight/addflight.component';
+import { ViewallflightsComponent } from './components/viewallflights/viewallflights.component';
+
 
 
 
@@ -58,7 +63,12 @@ import { EticketComponent } from './components/eticket/eticket.component';
     AirplanecardComponent,
     SeatuiComponent,
     PaymentuiComponent,
-    EticketComponent
+    EticketComponent,
+    FooterComponent,
+    ChangepasswordComponent,
+    AddflightComponent,
+    ViewallflightsComponent
+
 
   ],
   imports: [
@@ -75,8 +85,9 @@ import { EticketComponent } from './components/eticket/eticket.component';
     MatNativeDateModule,
     MatInputModule,
     MatChipsModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent,UsersignupComponent,UserloginComponent,SearchComponent,AdminloginComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

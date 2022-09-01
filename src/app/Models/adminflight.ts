@@ -1,10 +1,10 @@
 
 export interface Adminflight{
-    FlightName: string,
-    Depart_airport_id: Number,
-    Arrival_airport_id: Number,
-    Departure_time: Date,
-    Arrival_time: Date,
-    Economy_fare: Number,
-    Business_fare:Number,
+    flightName: string,
+    depart_airport_id: Number,
+    arrival_airport_id: Number,
+    departure_time: Date,
+    arrival_time: Date,
+    economy_fare: Number,
+    business_fare:Number,
   }

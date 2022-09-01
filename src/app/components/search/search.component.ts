@@ -10,6 +10,7 @@ import { SearchflightService } from 'src/app/services/searchflight.service';
 import { SharedserviceService } from 'src/app/sharedservice.service';
 import Swal from 'sweetalert2';
 
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -65,7 +66,7 @@ export class SearchComponent implements OnInit {
     Swal.showLoading();
 
   
-    
+    console.log(this.model)
       this.GetFlightsService.SearchFlights(this.model.Booking_Type,this.model.Depart_airport_Id,this.model.Arrival_airport_Id,this.model.Departure_Time,this.model.Arrival_Time,this.model.adults,this.model.childs,this.model.infants,this.model.Class_Type).subscribe((d:SearchData[])=>{
        console.log(this.model)
        console.log(d)

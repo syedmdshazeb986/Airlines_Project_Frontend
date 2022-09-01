@@ -13,6 +13,7 @@ airports:Airport[]
 passengers:Passenger[]
 selectedairplane:any
 userId:any
+amount:any
 booking_type:any
 no_of_passengers:any
 searchquery:Searchflight
@@ -60,4 +61,13 @@ this.searchquery=model
 getSearchquery(){
   return this.searchquery
 }
+
+setAmount(total_amount:any){
+  this.amount=total_amount
+}
+
+getAmount(){
+  return this.amount
+}
+
 }

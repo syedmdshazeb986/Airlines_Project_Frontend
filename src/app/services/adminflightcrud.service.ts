@@ -7,7 +7,7 @@ import { Adminflight } from '../Models/adminflight';
   providedIn: 'root'
 })
 export class AdminflightcrudService {
-  url:string="http://localhost:53656/api/admin/"
+  url:string="https://localhost:44378/api/Admin/"
   httpOptions = { headers: new HttpHeaders({ 'Content-type': 'application/json' }) };
   
   constructor(private http: HttpClient) { }
@@ -16,17 +16,18 @@ export class AdminflightcrudService {
     return this.http.get<Adminflight[]>(this.url+"flights")
   }
 
-  getByflightname(flightname:String):Observable<Adminflight>{
-    return this.http.get<Adminflight>(this.url+"flight/"+flightname)
+  getByflightname(FlightName:any):Observable<Adminflight>{
+    return this.http.get<Adminflight>(this.url+"getByFlightName/"+FlightName)
   }
 
-  deleteflight(flightname: string){
-    return this.http.delete<Adminflight>(this.url+"flight/"+flightname,this.httpOptions)
+  deleteflight(FlightName: string){
+    return this.http.delete<Adminflight>(this.url+"flight/"+FlightName,this.httpOptions)
   }
 
-  addflight(flight:any):Observable<any>{
-    flight.depart_airport_id = parseInt(flight.depart_airport_id);
-    flight.arrival_airport_id = parseInt(flight.arrival_airport_id);
-    return this.http.post<any>(this.url+"addflight",JSON.stringify(flight), this.httpOptions)
+  addflight(flight:Adminflight):Observable<any>{
+    //flight.depart_airport_id = parseInt(flight.depart_airport_id);
+    //flight.arrival_airport_id = parseInt(flight.arrival_airport_id);
+    return this.http.post<Adminflight>(this.url+"addflight",flight,this.httpOptions)
   }
+
 }

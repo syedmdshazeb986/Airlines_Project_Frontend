@@ -57,7 +57,7 @@ export class PaymentuiComponent implements OnInit {
 
   submitForm(paymentForm:any)
   {
-
+      console.log(this.passengers)
       this.TransactionService.book(this.user_id,this.flightdetails.flightId,this.booking_type,this.flightdetails.arrival_Time,this.class_type,this.flightdetails.departure_Time,'credit_card',this.passengers).subscribe(d=>{
         if(d=="Flight Booked Successfully"){
         Swal.fire(
@@ -65,7 +65,7 @@ export class PaymentuiComponent implements OnInit {
           'Your Tickets are booked :)',
           'success'
         )
-        this.router.navigate([`${'flight/payment/eticket'}`]);
+        this.router.navigate([`${'eticket'}`]);
         }
       },err=>{
         

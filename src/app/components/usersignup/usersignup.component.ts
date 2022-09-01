@@ -6,6 +6,8 @@ import { usersignup } from 'src/app/Models/usersignup';
 import { UsersignupService } from 'src/app/services/usersignup.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { AppModule } from 'src/app/app.module';
+import { ignoreElements } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-usersignup',
@@ -32,11 +34,18 @@ export class UsersignupComponent implements OnInit {
   }
   onSubmit(myform:NgForm)
   {
-    delete myform.value.confirmpassword;
     this.newuser=myform.value;
-    this._service.RegisterUser(this.newuser).subscribe(data=>
-      console.log(this.newuser)
-      )
+    console.log(this.newuser)
+    this._service.RegisterUser(this.newuser).subscribe(data=>{
+      console.log(data)
+      if(data){
+        Swal.fire('Done', 'Account Created!', 'success')
+        this.router.navigate([`${'userlogin'}`]);
+      }else{
+        Swal.fire('error', 'Registration Unsuccesful')
+      }
+
+    });
 
   }
 }

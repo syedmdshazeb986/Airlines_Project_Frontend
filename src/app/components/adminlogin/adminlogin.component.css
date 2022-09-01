@@ -6,6 +6,7 @@
     justify-content: center;
     min-height: 100vh;
     padding: 2rem;
+    background-image: url(../../../assets/Adminloginpic.jpg);
     background-size: cover;
     
 }
